@@ -1,4 +1,4 @@
-#include "WaitingList.h"
+#include "../include/WaitingList.h"
 
 WaitingList::WaitingList() {
     front = nullptr;
