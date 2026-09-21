@@ -3,25 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include "Reservation.h"
 using namespace std;
-
-struct Reservation {
-    int reservationID;
-    string studentID;
-    string resourceID;
-    string date;
-    string startTime;
-    string endTime;
-
-    Reservation(int id, string student, string resource,
-                string d, string start, string end)
-        : reservationID(id),
-          studentID(student),
-          resourceID(resource),
-          date(d),
-          startTime(start),
-          endTime(end) {}
-};
 
 struct ReservationNode {
     Reservation data;
@@ -40,9 +23,9 @@ public:
     ~ReservationList();
 
     void insertReservation(const Reservation& reservation);
-    bool removeReservation(int reservationID);
+    bool removeReservation(int id);
     void displayReservations() const;
-    bool findReservation(int reservationID) const;
+    bool findReservation(int id) const;
     bool isEmpty() const;
 };
 
