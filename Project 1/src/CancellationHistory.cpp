@@ -50,10 +50,10 @@ void CancellationHistory::display() const {
   std::cout << "===== Cancellation History (most recent first) =====\n";
   int position = 1;
   for (Node *cur = top; cur != nullptr; cur = cur->next) {
-    std::cout << position++ << ". Reservation ID: " << cur->data.id
-              << " | Student: " << cur->data.studentName << " ("
-              << cur->data.studentId << ")"
-              << " | Resource: " << cur->data.resourceId
-              << " | Date: " << cur->data.date << "\n";
+    std::cout << position++ << ". Reservation ID: " << cur->data.getReservationID()
+              << " | Student: " << cur->data.getName() << " ("
+              << cur->data.getStudentID() << ")"
+              << " | Resource: " << cur->data.getResourceID()
+              << " | Date: " << cur->data.getDate() << "\n";
   }
 }

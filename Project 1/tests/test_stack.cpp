@@ -1,49 +1,48 @@
+
 #include "CancellationHistory.h"
+#include "Reservation.h"
 #include <cassert>
 #include <iostream>
 
-
-// helper: build a Reservation from the five fields.
-static Reservation makeRes(int id, int studentId, const std::string &name,
-                           const std::string &resourceId,
-                           const std::string &date) {
-  Reservation r;
-  r.id = id;
-  r.studentId = studentId;
-  r.studentName = name;
-  r.resourceId = resourceId;
-  r.date = date;
-  return r;
+Reservation makeRes(int id, int sid, std::string name, std::string resId, std::string date) {
+    return Reservation(id, sid, name, resId, date);
 }
 
 int main() {
-  CancellationHistory history;
-  Reservation out;
+    CancellationHistory history;
+    Reservation out(0, 0, "", "", "");
 
-  // empty stack: pop and peek must fail safely, not crash.
-  assert(history.isEmpty());
-  assert(!history.pop(out));
-  assert(!history.peek(out));
-  history.display();
+    assert(history.isEmpty() == true);
+    assert(history.size() == 0);
+    assert(history.pop(out) == false);
+    assert(history.peek(out) == false);
 
-  // push three cancellations (data taken from reservations.txt).
-  history.push(makeRes(301, 1001, "Alice Smith", "R101", "09/15/2026"));
-  history.push(makeRes(302, 1002, "Bob Johnson", "R103", "09/16/2026"));
-  history.push(makeRes(303, 1003, "Sara Lee", "R105", "09/17/2026"));
-  assert(history.size() == 3);
-  history.display();
+    history.push(makeRes(301, 1001, "Alice Smith", "R101", "09/15/2026"));
+    history.push(makeRes(302, 1002, "Bob Jones", "R102", "09/16/2026"));
+    history.push(makeRes(303, 1003, "Carla Diaz", "R103", "09/17/2026"));
 
-  // peek shows the newest without removing it.
-  assert(history.peek(out) && out.id == 303);
-  assert(history.size() == 3);
+    assert(history.isEmpty() == false);
+    assert(history.size() == 3);
 
-  // pop returns them newest first (last in, first out).
-  assert(history.pop(out) && out.id == 303);
-  assert(history.pop(out) && out.id == 302);
-  assert(history.pop(out) && out.id == 301);
-  assert(history.isEmpty());
-  assert(!history.pop(out)); // empty again
+    bool ok = history.peek(out);
+    assert(ok == true);
+    assert(out.getReservationID() == 303);
+    assert(history.size() == 3);
 
-  std::cout << "All CancellationHistory tests passed.\n";
-  return 0;
+    ok = history.pop(out);
+    assert(ok == true);
+    assert(out.getReservationID() == 303);
+    assert(history.size() == 2);
+
+    history.pop(out);
+    assert(out.getReservationID() == 302);
+
+    history.pop(out);
+    assert(out.getReservationID() == 301);
+
+    assert(history.isEmpty() == true);
+    assert(history.size() == 0);
+
+    std::cout << "All CancellationHistory tests passed." << std::endl;
+    return 0;
 }
