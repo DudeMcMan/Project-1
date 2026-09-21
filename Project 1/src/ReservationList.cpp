@@ -24,13 +24,13 @@ void ReservationList::insertReservation(const Reservation& reservation) {
     head = newNode;
 }
 
-bool ReservationList::removeReservation(int reservationID) {
+bool ReservationList::removeReservation(int id) {
     if (head == nullptr) {
         return false;
     }
 
     // Removing the first node
-    if (head->data.id == reservationID) {
+    if (head->data.id == id) {
         ReservationNode* temp = head;
         head = head->next;
         delete temp;
@@ -40,7 +40,7 @@ bool ReservationList::removeReservation(int reservationID) {
     ReservationNode* current = head;
 
     while (current->next != nullptr) {
-        if (current->next->data.id == reservationID) {
+        if (current->next->data.id == id) {
             ReservationNode* temp = current->next;
             current->next = temp->next;
             delete temp;
@@ -75,11 +75,11 @@ void ReservationList::displayReservations() const {
     }
 }
 
-bool ReservationList::findReservation(int reservationID) const {
+bool ReservationList::findReservation(int id) const {
     ReservationNode* current = head;
 
     while (current != nullptr) {
-        if (current->data.reservationID == reservationID) {
+        if (current->data.id == id) {
             return true;
         }
 
