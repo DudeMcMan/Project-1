@@ -30,7 +30,7 @@ bool ReservationList::removeReservation(int id) {
     }
 
     // Removing the first node
-    if (head->data.id == id) {
+    if (head->data.getReservationID() == id) {
         ReservationNode* temp = head;
         head = head->next;
         delete temp;
@@ -40,7 +40,7 @@ bool ReservationList::removeReservation(int id) {
     ReservationNode* current = head;
 
     while (current->next != nullptr) {
-        if (current->next->data.id == id) {
+        if (current->next->data.getReservationID() == id) {
             ReservationNode* temp = current->next;
             current->next = temp->next;
             delete temp;
@@ -64,11 +64,11 @@ void ReservationList::displayReservations() const {
     cout << "\n===== Active Reservations =====\n";
 
     while (current != nullptr) {
-        cout << "Reservation ID: " << current->data.id << endl;
-        cout << "Student ID: " << current->data.studentId << endl;
-         cout << "Student Name: " << current->data.studentName << endl;
-        cout << "Resource ID: " << current->data.resourceId << endl;
-        cout << "Date: " << current->data.date << endl;
+        cout << "Reservation ID: " << current->data.getReservationID() << endl;
+        cout << "Student ID: " << current->data.getStudentID() << endl;
+         cout << "Student Name: " << current->data.getName() << endl;
+        cout << "Resource ID: " << current->data.getResourceID() << endl;
+        cout << "Date: " << current->data.getDate() << endl;
         cout << "-----------------------------\n";
 
         current = current->next;
@@ -79,7 +79,7 @@ bool ReservationList::findReservation(int id) const {
     ReservationNode* current = head;
 
     while (current != nullptr) {
-        if (current->data.id == id) {
+        if (current->data.getReservationID() == id) {
             return true;
         }
 
