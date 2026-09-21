@@ -1,4 +1,4 @@
-#include "ReservationManager.h"
+#include "C:/Users/crisp/Downloads/Project-1-Owen-s-branch/Project-1-Owen-s-branch/Project 1/include/ReservationManager.h"
 
 #include <iostream>
 #include <fstream>
@@ -45,6 +45,8 @@ bool ReservationManager::loadReservations(string fileName){
             cout << "Warning: Duplicate reservation ID " << id << " skipped." << endl;
             continue;
         }
+        Reservation newReservation(id, studentId, studentName, resourceId, date);
+        reservations.push_back(newReservation);
     }
 
     file.close();
@@ -170,11 +172,13 @@ void ReservationManager::displayReservations(){
         return;
     }
 
-    cout << endl << "===== Active Reservations =====";
+    cout << endl << "===== Active Reservations =====" << endl;
 
     for(int i = 0; i < reservations.size(); i++){
         reservations[i].display();
     }
+
+    cout << "===============================" << endl;
 }
 
 

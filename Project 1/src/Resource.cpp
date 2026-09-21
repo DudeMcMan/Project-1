@@ -1,4 +1,4 @@
-#include "Resource.h"
+#include "C:/Users/crisp/Downloads/Project-1-Owen-s-branch/Project-1-Owen-s-branch/Project 1/include/Resource.h"
 
 Resource::Resource(){
     id = "";
@@ -34,10 +34,6 @@ void Resource::setAvailable(bool isAvailable){
 }
 
 void Resource::display(){
-    cout << "Display the resource" << endl;
-}
-
-void Resource::displayAvailability(){
     cout << id << "|" << name << "|" << type << "|";
     if(available == true){
         cout << "Available" << endl;
