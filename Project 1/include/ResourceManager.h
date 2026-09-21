@@ -13,7 +13,7 @@ class ResourceManager{
         vector<Resource> resources;
 
     public:
-        bool loadResources(string filename);
+        bool loadResources(string fileName);
 
         void displayResources();
         

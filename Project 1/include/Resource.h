@@ -25,7 +25,6 @@ class Resource{
         void setAvailable(bool isAvailable);
 
         void display();
-        void displayAvailability();
 };
 
 
