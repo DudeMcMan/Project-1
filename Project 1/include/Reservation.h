@@ -2,18 +2,19 @@
 #define RESERVATION_H
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Reservation{
-    private:
+    //private:
+        
+
+    public:
         int id;
         int studentId;
         string studentName;
         string resourceId;
         string date;
-
-    public:
-
     
     Reservation();
     Reservation(int regID, int sID, string name, string resID, string reservationDate);

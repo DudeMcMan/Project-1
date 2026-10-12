@@ -3,6 +3,9 @@
 
 #include "ResourceManager.h"
 #include "Reservation.h"
+#include "ReservationList.h"
+#include "WaitingList.h"
+#include "CancellationHistory.h"
 
 #include <string>
 #include <queue>
@@ -10,9 +13,15 @@
 
 class ReservationManager{
     private:
-        vector<Reservation> reservations;
+        ReservationList reservations;
+
+        WaitingList waitingList;
+
+        CancellationHistory cancellationHistory;
 
         ResourceManager* resourceManager;
+
+        int nextReservationID;
 
     public:
         // Constructor
@@ -25,10 +34,20 @@ class ReservationManager{
         void cancelReservation(int id);
 
         void displayReservations();
+        
+        void displayWaitingList();
 
-        bool validateReservation(int id, int studentId, string resourceId);
+        void displayCancellationHistory();
+
+        void undoCancellation();
+
+        bool validateReservation(int studentID, string studentName, string resourceID, string date);
 
         Reservation* findReservation(int id);
+
+        void searchByStudent(string name);
+
+        void report();
 };
 
 

@@ -23,9 +23,9 @@ class ResourceManager{
 
         //void sortByType();
 
-        void displayAvailableResources();
+        void displayAvailableResources(string date);
 
-        
+        vector<Resource> getResources();
 };
 
 

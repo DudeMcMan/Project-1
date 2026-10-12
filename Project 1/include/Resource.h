@@ -2,6 +2,8 @@
 #define RESOURCE_H
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 class Resource{
@@ -10,6 +12,8 @@ class Resource{
         string name;
         string type;
         bool available;
+
+        vector<string> bookedDates;
 
     public:
         Resource();
@@ -21,8 +25,15 @@ class Resource{
 
         string getType();
 
-        bool isAvailable();
+        bool isDateAvailable(string date);
+
+        //bool isAvailable();
         void setAvailable(bool isAvailable);
+
+        bool bookDate(string date);
+        bool unbookDate(string date);
+
+        int getBookings();
 
         void display();
 };
