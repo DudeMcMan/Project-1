@@ -30,5 +30,6 @@ class ReservationManager{
         void undoCancellation();
         bool validateReservation(int studentID, string studentName, string resourceID, string date);
         Reservation* findReservation(int id);
+        void searchByStudent(string name);
 };
 #endif

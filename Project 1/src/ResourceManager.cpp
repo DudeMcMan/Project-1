@@ -59,13 +59,13 @@ void ResourceManager::displayResources(){
     cout << "======================================" << endl;
 }
 
-void ResourceManager::displayAvailableResources(){
-    cout << endl << "========== Available Resources ==========" << endl;
+void ResourceManager::displayAvailableResources(string date){
+    cout << endl << "========== Resources Available on " << date << " ==========" << endl;
 
     bool found = false;
 
     for(int i = 0; i < resources.size(); i++){
-        if(resources[i].isAvailable()){
+        if(resources[i].isDateAvailable(date)){
             resources[i].display();
             found = true;
         }
@@ -75,7 +75,7 @@ void ResourceManager::displayAvailableResources(){
         cout << "No resources are currently available." << endl;
     }
 
-    cout << "=========================================" << endl;
+    cout << "======================================================" << endl;
 }
 
 Resource* ResourceManager::searchByID(string resourceID){

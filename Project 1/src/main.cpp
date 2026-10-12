@@ -34,7 +34,33 @@ int main(){
                 break;
             case 4: reservationManager.displayWaitingList(); break;
             case 5: reservationManager.undoCancellation(); break;
-            case 6: reservationManager.displayReservations(); break;
+            case 6: {
+                int searchChoice = 0;
+                cout << "\n1. Search by Reservation ID\n";
+                cout << "2. Search by Student Name\n";
+                cout << "Select: ";
+                cin >> searchChoice;
+                if(searchChoice == 1){
+                    int searchId;
+                    cout << "Enter reservation ID: ";
+                    cin >> searchId;
+                    Reservation* found = reservationManager.findReservation(searchId);
+                    if(found != nullptr){
+                        found->display();
+                    } else {
+                        cout << "Reservation not found" << endl;
+                    }
+                } else if(searchChoice == 2){
+                    cin.ignore();
+                    string name;
+                    cout << "Enter student name: ";
+                    getline(cin, name);
+                    reservationManager.searchByStudent(name);
+                } else {
+                    cout << "Not a valid search option" << endl;
+                }
+                break;
+            }
             case 7: resourceManager.sortByName(); break;
             case 8: {
                 int reportChoice = 0;

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Reservation.h"
 
 using namespace std;
@@ -30,6 +31,7 @@ public:
     const Reservation* findReservation(int id) const;
     int countByResource(const string& resourceID) const;
     bool isEmpty() const;
+    vector<Reservation*> findReservationByName(const string& name);
 };
 
 #endif

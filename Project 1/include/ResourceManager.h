@@ -21,7 +21,7 @@ class ResourceManager{
 
         void sortByName();
 
-        void displayAvailableResources();
+        void displayAvailableResources(string date);
 
         const vector<Resource>& getResources() const;
 

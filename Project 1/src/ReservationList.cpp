@@ -120,3 +120,17 @@ int ReservationList::countByResource(const string& resourceID) const {
 bool ReservationList::isEmpty() const {
     return head == nullptr;
 }
+
+vector<Reservation*> ReservationList::findReservationByName(const string& name) {
+    vector<Reservation*> matches;
+    ReservationNode* current = head;
+
+    while (current != nullptr) {
+        if (current->data.studentName == name) {
+            matches.push_back(&current->data);
+        }
+        current = current->next;
+    }
+
+    return matches;
+}
