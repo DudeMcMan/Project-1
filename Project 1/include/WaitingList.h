@@ -36,6 +36,7 @@ public:
     bool removeStudent(WaitingStudent& student);
     void displayWaitingList() const;
     bool isEmpty() const;
+    void displayStatistics() const;
 };
 
 #endif

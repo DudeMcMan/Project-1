@@ -76,3 +76,34 @@ void WaitingList::displayWaitingList() const {
 bool WaitingList::isEmpty() const {
     return front == nullptr;
 }
+
+void WaitingList::displayStatistics() const {
+    if (front == nullptr) {
+        cout << "Waiting list is empty.\n";
+        cout << "Total students waiting: 0\n";
+        return;
+    }
+
+    cout << "\n===== Waiting-List Statistics =====\n";
+    int total = 0;
+    for (const WaitingNode* current = front; current != nullptr; current = current->next) {
+        ++total;
+        bool alreadyCounted = false;
+        for (const WaitingNode* prior = front; prior != current; prior = prior->next) {
+            if (prior->data.resourceID == current->data.resourceID) {
+                alreadyCounted = true;
+                break;
+            }
+        }
+        if (!alreadyCounted) {
+            int resourceCount = 0;
+            for (const WaitingNode* scan = current; scan != nullptr; scan = scan->next) {
+                if (scan->data.resourceID == current->data.resourceID) ++resourceCount;
+            }
+            cout << "Resource " << current->data.resourceID << ": "
+                 << resourceCount << " student(s) waiting\n";
+        }
+    }
+    cout << "Total students waiting: " << total << "\n";
+    cout << "===================================\n";
+}

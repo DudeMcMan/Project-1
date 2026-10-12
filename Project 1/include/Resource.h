@@ -15,16 +15,16 @@ class Resource{
         Resource();
         Resource(string resourceID, string resourceName, string resourceType, bool isAvailable);
 
-        string getID();
+        string getID() const;
 
-        string getName();
+        string getName() const;
 
-        string getType();
+        string getType() const;
 
-        bool isAvailable();
+        bool isAvailable() const;
         void setAvailable(bool isAvailable);
 
-        void display();
+        void display() const;
 };
 
 

@@ -245,3 +245,56 @@ Reservation* ReservationManager::findReservation(int reservationID){
 
     return reservations.findReservation(reservationID);
 }
+void ReservationManager::displayActiveReservationsReport() {
+    cout << "\n========== Active Reservations Report ==========\n";
+    reservations.displayReservations();
+    cout << "=================================================\n";
+}
+
+void ReservationManager::displayResourceUtilizationReport() {
+    cout << "\n========== Resource Utilization Report ==========\n";
+    const vector<Resource>& allResources = resourceManager->getResources();
+    if (allResources.empty()) {
+        cout << "No resources loaded.\n";
+    } else {
+        for (const Resource& resource : allResources) {
+            cout << resource.getID() << " | " << resource.getName()
+                 << " | Reservations: " << reservations.countByResource(resource.getID()) << "\n";
+        }
+    }
+    cout << "=================================================\n";
+}
+
+void ReservationManager::displayMostRequestedResourcesReport() {
+    cout << "\n========== Most Requested Resources ==========\n";
+    const vector<Resource>& allResources = resourceManager->getResources();
+    if (allResources.empty()) {
+        cout << "No resources loaded.\n";
+        return;
+    }
+
+    vector<bool> printed(allResources.size(), false);
+    for (size_t rank = 0; rank < allResources.size(); ++rank) {
+        int bestIndex = -1;
+        int bestCount = -1;
+        for (size_t i = 0; i < allResources.size(); ++i) {
+            if (printed[i]) continue;
+            int count = reservations.countByResource(allResources[i].getID());
+            if (count > bestCount) {
+                bestCount = count;
+                bestIndex = static_cast<int>(i);
+            }
+        }
+        if (bestIndex >= 0) {
+            printed[bestIndex] = true;
+            cout << (rank + 1) << ". " << allResources[bestIndex].getName()
+                 << " (" << allResources[bestIndex].getID() << ") - "
+                 << bestCount << " reservation(s)\n";
+        }
+    }
+    cout << "==============================================\n";
+}
+
+void ReservationManager::displayWaitingListStatisticsReport() {
+    waitingList.displayStatistics();
+}

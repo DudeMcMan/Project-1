@@ -14,26 +14,26 @@ Resource::Resource(string resourceID, string resourceName, string resourceType, 
     available = isAvailable;
 }
 
-string Resource::getID(){
+string Resource::getID() const{
     return id;
 }
 
-string Resource::getName(){
+string Resource::getName() const{
     return name;
 }
 
-string Resource::getType(){
+string Resource::getType() const{
     return type;
 }
 
-bool Resource::isAvailable(){
+bool Resource::isAvailable() const{
     return available;
 }
 void Resource::setAvailable(bool isAvailable){
     available = isAvailable;
 }
 
-void Resource::display(){
+void Resource::display() const{
     cout << id << "|" << name << "|" << type << "|";
     if(available == true){
         cout << "Available" << endl;

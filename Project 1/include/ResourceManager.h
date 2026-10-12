@@ -16,17 +16,15 @@ class ResourceManager{
         bool loadResources(string fileName);
 
         void displayResources();
-        
+
         Resource* searchByID(string resourceID);
 
-        //void sortByName();
-
-        //void sortByType();
+        void sortByName();
 
         void displayAvailableResources();
 
-        
-};
+        const vector<Resource>& getResources() const;
 
+};
 
 #endif

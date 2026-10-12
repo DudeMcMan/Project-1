@@ -19,7 +19,6 @@ ReservationList::~ReservationList() {
 void ReservationList::insertReservation(const Reservation& reservation) {
     ReservationNode* newNode = new ReservationNode(reservation);
 
-    // Insert at the beginning of the linked list
     newNode->next = head;
     head = newNode;
 }
@@ -29,10 +28,9 @@ bool ReservationList::removeReservation(int id, Reservation& removedReservation)
         return false;
     }
 
-    // Removing the first node
     if (head->data.id == id) {
         ReservationNode* temp = head;
-        removedReservation = head ->data;
+        removedReservation = head->data;
         head = head->next;
         delete temp;
         return true;
@@ -68,7 +66,7 @@ void ReservationList::displayReservations() const {
     while (current != nullptr) {
         cout << "Reservation ID: " << current->data.id << endl;
         cout << "Student ID: " << current->data.studentId << endl;
-         cout << "Student Name: " << current->data.studentName << endl;
+        cout << "Student Name: " << current->data.studentName << endl;
         cout << "Resource ID: " << current->data.resourceId << endl;
         cout << "Date: " << current->data.date << endl;
         cout << "-----------------------------\n";
@@ -103,6 +101,20 @@ const Reservation* ReservationList::findReservation(int id) const {
     }
 
     return nullptr;
+}
+
+int ReservationList::countByResource(const string& resourceID) const {
+    int count = 0;
+    ReservationNode* current = head;
+
+    while (current != nullptr) {
+        if (current->data.resourceId == resourceID) {
+            count++;
+        }
+        current = current->next;
+    }
+
+    return count;
 }
 
 bool ReservationList::isEmpty() const {

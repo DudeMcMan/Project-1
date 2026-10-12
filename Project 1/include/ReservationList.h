@@ -28,6 +28,7 @@ public:
     void displayReservations() const;
     Reservation* findReservation(int id);
     const Reservation* findReservation(int id) const;
+    int countByResource(const string& resourceID) const;
     bool isEmpty() const;
 };
 
